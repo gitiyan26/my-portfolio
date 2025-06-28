@@ -7,6 +7,14 @@ function App() {
   const [darkMode, setDarkMode] = useState(true)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
+  
+  // Add CSS for blinking cursor animation
+  const blinkingCursorStyle = `
+    @keyframes blink {
+      0%, 50% { border-color: transparent; }
+      51%, 100% { border-color: #3B82F6; }
+    }
+  `
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -79,9 +87,13 @@ function App() {
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 relative overflow-x-hidden ${
-      darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'
-    }`}>
+    <>
+      {/* Add blinking cursor CSS */}
+      <style>{blinkingCursorStyle}</style>
+      
+      <div className={`min-h-screen transition-colors duration-300 relative overflow-x-hidden ${
+        darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'
+      }`}>
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         {/* Enhanced Gradient Background for Light Mode */}
@@ -243,126 +255,464 @@ function App() {
 
       {/* Hero Section */}
        <section id="home" className="relative z-10 pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-white/90 via-slate-50/80 to-blue-50/90 dark:from-gray-900/50 dark:via-gray-800/30 dark:to-blue-900/50">
-         {/* Additional animated elements for hero */}
+         {/* Enhanced animated background elements */}
          <div className="absolute inset-0 overflow-hidden">
+           {/* Large floating orbs with enhanced animations */}
            <motion.div 
              className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
-             animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+             animate={{ 
+               scale: [1, 1.3, 0.8, 1.2, 1], 
+               rotate: [0, 180, 360],
+               x: [0, 50, -30, 0],
+               y: [0, -20, 30, 0]
+             }}
+             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
            />
            <motion.div 
              className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
-             animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+             animate={{ 
+               scale: [1.2, 0.9, 1.4, 1], 
+               rotate: [360, 180, 0],
+               x: [0, -40, 20, 0],
+               y: [0, 25, -15, 0]
+             }}
+             transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+           />
+           
+           {/* Medium floating elements */}
+           <motion.div 
+             className="absolute top-1/4 left-1/3 w-32 h-32 bg-gradient-to-r from-cyan-400/15 to-blue-400/15 rounded-full blur-2xl"
+             animate={{ 
+               scale: [1, 1.5, 1], 
+               opacity: [0.3, 0.7, 0.3],
+               rotate: [0, 360]
+             }}
+             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+           />
+           <motion.div 
+             className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-xl"
+             animate={{ 
+               scale: [1, 1.3, 1], 
+               opacity: [0.4, 0.8, 0.4],
+               rotate: [360, 0]
+             }}
+             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+           />
+           
+           {/* Interactive floating particles */}
+           {[...Array(15)].map((_, i) => (
+             <motion.div
+               key={i}
+               className="absolute w-3 h-3 bg-gradient-to-r from-blue-400/40 to-purple-400/40 rounded-full"
+               style={{
+                 left: `${20 + Math.random() * 60}%`,
+                 top: `${20 + Math.random() * 60}%`,
+               }}
+               animate={{
+                 y: [-30, -80, -30],
+                 x: [-20, 20, -20],
+                 opacity: [0, 1, 0],
+                 scale: [0.5, 1.2, 0.5],
+                 rotate: [0, 360]
+               }}
+               transition={{
+                 duration: 4 + Math.random() * 3,
+                 repeat: Infinity,
+                 delay: Math.random() * 3,
+                 ease: "easeInOut"
+               }}
+             />
+           ))}
+           
+           {/* Geometric animated shapes */}
+           <motion.div 
+             className="absolute top-1/3 right-1/3 w-16 h-16 border-2 border-blue-300/30 dark:border-blue-400/30"
+             style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
+             animate={{ 
+               rotate: [0, 360],
+               scale: [1, 1.2, 1],
+               opacity: [0.3, 0.7, 0.3]
+             }}
+             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+           />
+           <motion.div 
+             className="absolute bottom-1/4 left-1/2 w-12 h-12 bg-gradient-to-r from-purple-300/20 to-pink-300/20 transform rotate-45"
+             animate={{ 
+               rotate: [45, 405],
+               scale: [1, 1.3, 1],
+               opacity: [0.4, 0.8, 0.4]
+             }}
+             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
            />
          </div>
          
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-white/80 dark:bg-gray-800/20 backdrop-blur-xl rounded-3xl p-12 shadow-2xl shadow-slate-300/20 dark:shadow-gray-900/40 border border-slate-200/50 dark:border-gray-700/30 relative">
            <div className="space-y-8">
-             {/* Profile Image with enhanced animation */}
+             {/* Enhanced Profile Image with multiple animation layers */}
              <motion.div 
                initial={{ scale: 0, rotate: -180, opacity: 0 }}
                animate={{ scale: 1, rotate: 0, opacity: 1 }}
                transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
-               className="mx-auto w-40 h-40 relative"
+               className="mx-auto w-40 h-40 relative group cursor-pointer"
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.95 }}
              >
-               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full animate-pulse"></div>
-               <div className="absolute inset-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/30 backdrop-blur-sm">
-                 <span className="text-5xl font-bold text-white">I</span>
-               </div>
+               {/* Outer glow ring */}
                <motion.div 
-                 className="absolute -inset-4 border-2 border-blue-400/50 rounded-full"
-                 animate={{ rotate: 360 }}
-                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                 className="absolute -inset-8 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-xl"
+                 animate={{ 
+                   scale: [1, 1.2, 1],
+                   opacity: [0.5, 0.8, 0.5]
+                 }}
+                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                />
+               
+               {/* Rotating border rings */}
+               <motion.div 
+                 className="absolute -inset-6 border-2 border-blue-400/30 rounded-full"
+                 animate={{ rotate: 360 }}
+                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+               />
+               <motion.div 
+                 className="absolute -inset-4 border border-purple-400/40 rounded-full"
+                 animate={{ rotate: -360 }}
+                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+               />
+               
+               {/* Main profile container */}
+               <motion.div 
+                 className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full"
+                 animate={{ 
+                   background: [
+                     "linear-gradient(45deg, #3B82F6, #8B5CF6, #EC4899)",
+                     "linear-gradient(90deg, #8B5CF6, #EC4899, #3B82F6)",
+                     "linear-gradient(135deg, #EC4899, #3B82F6, #8B5CF6)",
+                     "linear-gradient(45deg, #3B82F6, #8B5CF6, #EC4899)"
+                   ]
+                 }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+               />
+               
+               {/* Inner content */}
+               <motion.div 
+                 className="absolute inset-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/30 backdrop-blur-sm group-hover:ring-white/50 transition-all duration-300"
+                 whileHover={{ 
+                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)"
+                 }}
+               >
+                 <motion.span 
+                   className="text-5xl font-bold text-white"
+                   animate={{ 
+                     textShadow: [
+                       "0 0 20px rgba(255, 255, 255, 0.5)",
+                       "0 0 30px rgba(255, 255, 255, 0.8)",
+                       "0 0 20px rgba(255, 255, 255, 0.5)"
+                     ]
+                   }}
+                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                 >
+                   I
+                 </motion.span>
+               </motion.div>
+               
+               {/* Floating particles around profile */}
+               {[...Array(8)].map((_, i) => (
+                 <motion.div
+                   key={i}
+                   className="absolute w-2 h-2 bg-blue-400/60 rounded-full"
+                   style={{
+                     left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 8)}%`,
+                     top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 8)}%`,
+                   }}
+                   animate={{
+                     scale: [0, 1, 0],
+                     opacity: [0, 1, 0],
+                     rotate: [0, 360]
+                   }}
+                   transition={{
+                     duration: 2,
+                     repeat: Infinity,
+                     delay: i * 0.2,
+                     ease: "easeInOut"
+                   }}
+                 />
+               ))}
              </motion.div>
             
-            {/* Main Heading */}
+            {/* Main Heading with Enhanced Animations */}
              <motion.div 
                initial={{ opacity: 0, y: 50 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.8 }}
-               className="space-y-4"
+               className="space-y-6"
              >
-               <motion.h1 
+               {/* Animated greeting with typing effect */}
+               <motion.div
                  initial={{ opacity: 0, y: 30 }}
                  animate={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.8, delay: 1 }}
                  className="text-4xl md:text-6xl font-bold"
                >
-                 Hi, I'm{' '}
+                 <motion.span
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 0.5, delay: 1.2 }}
+                 >
+                   Hi, I'm{' '}
+                 </motion.span>
                  <motion.span 
-                   initial={{ opacity: 0, scale: 0.5 }}
-                   animate={{ opacity: 1, scale: 1 }}
-                   transition={{ duration: 0.8, delay: 1.2, type: "spring" }}
-                   className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                   initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
+                   animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                   transition={{ 
+                     duration: 1, 
+                     delay: 1.5, 
+                     type: "spring", 
+                     stiffness: 200,
+                     damping: 15
+                   }}
+                   className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent relative inline-block"
+                   whileHover={{ 
+                     scale: 1.05,
+                     textShadow: "0 0 20px rgba(139, 92, 246, 0.5)"
+                   }}
                  >
                    Iyan
+                   {/* Animated underline */}
+                   <motion.div
+                     className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+                     initial={{ width: 0 }}
+                     animate={{ width: "100%" }}
+                     transition={{ duration: 0.8, delay: 2.2 }}
+                   />
                  </motion.span>
-               </motion.h1>
-               <motion.p 
+               </motion.div>
+               
+               {/* Animated role with typewriter effect */}
+               <motion.div
                  initial={{ opacity: 0, y: 20 }}
                  animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.8, delay: 1.4 }}
-                 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300"
+                 transition={{ duration: 0.8, delay: 1.8 }}
+                 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium"
                >
-                 Full Stack Developer & UI/UX Designer
-               </motion.p>
-               <motion.p 
+                 <motion.span
+                   initial={{ width: 0 }}
+                   animate={{ width: "auto" }}
+                   transition={{ duration: 1.5, delay: 2.5, ease: "easeInOut" }}
+                   className="inline-block overflow-hidden whitespace-nowrap border-r-2 border-blue-500 pr-1"
+                   style={{
+                     animation: "blink 1s infinite"
+                   }}
+                 >
+                   Full Stack Developer & UI/UX Designer
+                 </motion.span>
+               </motion.div>
+               
+               {/* Enhanced description with staggered animation */}
+               <motion.div
                  initial={{ opacity: 0, y: 20 }}
                  animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.8, delay: 1.6 }}
-                 className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto"
+                 transition={{ duration: 0.8, delay: 2.2 }}
+                 className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
                >
-                 Passionate about creating beautiful, functional, and user-centered digital experiences.
-                 I love turning complex problems into simple, beautiful designs.
-               </motion.p>
+                 <motion.span
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 0.6, delay: 2.8 }}
+                   className="block mb-2"
+                 >
+                   Passionate about creating beautiful, functional, and user-centered digital experiences.
+                 </motion.span>
+                 <motion.span
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 0.6, delay: 3.2 }}
+                   className="block"
+                 >
+                   I love turning complex problems into simple, beautiful designs.
+                 </motion.span>
+               </motion.div>
+               
+               {/* Floating skill badges */}
+               <motion.div
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.8, delay: 3.5 }}
+                 className="flex flex-wrap justify-center gap-3 mt-6"
+               >
+                 {['React', 'Node.js', 'UI/UX', 'TypeScript'].map((skill, index) => (
+                   <motion.span
+                     key={skill}
+                     initial={{ opacity: 0, scale: 0 }}
+                     animate={{ opacity: 1, scale: 1 }}
+                     transition={{ 
+                       duration: 0.5, 
+                       delay: 3.8 + index * 0.1,
+                       type: "spring",
+                       stiffness: 200
+                     }}
+                     whileHover={{ 
+                       scale: 1.1, 
+                       y: -5,
+                       boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)"
+                     }}
+                     className="px-4 py-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-gray-700/50 shadow-lg cursor-pointer"
+                   >
+                     {skill}
+                   </motion.span>
+                 ))}
+               </motion.div>
              </motion.div>
 
-            {/* CTA Buttons */}
+            {/* Enhanced CTA Buttons with Advanced Animations */}
              <motion.div 
                initial={{ opacity: 0, y: 30 }}
                animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 1.8 }}
-               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+               transition={{ duration: 0.8, delay: 4.2 }}
+               className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8"
              >
+               {/* Primary CTA Button */}
                <motion.button 
-                 whileHover={{ scale: 1.05, y: -2, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                 whileTap={{ scale: 0.95 }}
-                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                 className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-2xl backdrop-blur-sm"
-               >
-                 View My Work
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 4.5, type: "spring", stiffness: 200 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -3,
+                    boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                    background: "linear-gradient(135deg, #3B82F6, #8B5CF6, #EC4899)",
+                    transition: { type: "spring", stiffness: 400, damping: 17 }
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-xl font-semibold shadow-xl overflow-hidden backdrop-blur-sm"
+                >
+                 {/* Button background animation */}
+                 <motion.div
+                   className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+                   initial={{ x: "-100%" }}
+                   whileHover={{ x: "0%" }}
+                   transition={{ duration: 0.3 }}
+                 />
+                 
+                 {/* Button content */}
+                 <span className="relative z-10 flex items-center gap-2">
+                   View My Work
+                   <motion.span
+                     animate={{ x: [0, 5, 0] }}
+                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                   >
+                     →
+                   </motion.span>
+                 </span>
+                 
+                 {/* Shine effect */}
+                 <motion.div
+                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                   initial={{ x: "-100%" }}
+                   animate={{ x: "200%" }}
+                   transition={{ duration: 2, repeat: Infinity, delay: 1, ease: "easeInOut" }}
+                 />
                </motion.button>
+               
+               {/* Secondary CTA Button */}
                <motion.button 
-                 whileHover={{ scale: 1.05, y: -2, boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.15)" }}
-                 whileTap={{ scale: 0.95 }}
-                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                 className="px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all duration-300 backdrop-blur-sm bg-white/10 dark:bg-gray-900/10"
-               >
-                 Download CV
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 4.7, type: "spring", stiffness: 200 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -3,
+                    boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.15)",
+                    borderColor: "rgba(139, 92, 246, 0.8)",
+                    transition: { type: "spring", stiffness: 400, damping: 17 }
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative px-8 py-4 border-2 border-blue-500/50 text-blue-600 dark:text-blue-400 rounded-xl font-semibold backdrop-blur-sm bg-white/10 dark:bg-gray-900/10 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all duration-300 overflow-hidden"
+                >
+                 {/* Hover background */}
+                 <motion.div
+                   className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"
+                   initial={{ scale: 0, opacity: 0 }}
+                   whileHover={{ scale: 1, opacity: 1 }}
+                   transition={{ duration: 0.3 }}
+                 />
+                 
+                 {/* Button content */}
+                 <span className="relative z-10 flex items-center gap-2">
+                   <motion.span
+                     animate={{ rotate: [0, 360] }}
+                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                   >
+                     📄
+                   </motion.span>
+                   Download CV
+                 </span>
                </motion.button>
              </motion.div>
 
-            {/* Scroll Indicator */}
+            {/* Enhanced Scroll Indicator */}
              <motion.div 
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 2.2 }}
-               className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+               transition={{ duration: 0.8, delay: 5 }}
+               className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer group"
+               whileHover={{ scale: 1.1 }}
+               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
              >
-               <motion.div 
-                 animate={{ y: [0, -10, 0] }}
+               {/* Outer glow */}
+               <motion.div
+                 className="absolute -inset-4 bg-blue-400/20 rounded-full blur-lg"
+                 animate={{ 
+                   scale: [1, 1.2, 1],
+                   opacity: [0.3, 0.6, 0.3]
+                 }}
                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+               />
+               
+               {/* Main scroll indicator */}
+               <motion.div 
+                 animate={{ y: [0, -8, 0] }}
+                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                 className="relative"
                >
-                 <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center">
+                 <div className="w-6 h-10 border-2 border-blue-400/60 dark:border-blue-400/80 rounded-full flex justify-center bg-white/10 dark:bg-gray-900/10 backdrop-blur-sm group-hover:border-blue-500 transition-colors">
                    <motion.div 
                      animate={{ y: [0, 12, 0] }}
                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                     className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2"
+                     className="w-1.5 h-3 bg-blue-400 dark:bg-blue-400 rounded-full mt-2 group-hover:bg-blue-500 transition-colors"
                    ></motion.div>
                  </div>
+                 
+                 {/* Scroll text */}
+                 <motion.div
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 0.5, delay: 5.5 }}
+                   className="absolute top-12 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap font-medium"
+                 >
+                   Scroll to explore
+                 </motion.div>
                </motion.div>
+               
+               {/* Floating arrows */}
+               {[...Array(3)].map((_, i) => (
+                 <motion.div
+                   key={i}
+                   className="absolute left-1/2 transform -translate-x-1/2 text-blue-400/40"
+                   style={{ top: `${-20 - i * 8}px` }}
+                   animate={{
+                     y: [0, 10, 0],
+                     opacity: [0, 1, 0]
+                   }}
+                   transition={{
+                     duration: 1.5,
+                     repeat: Infinity,
+                     delay: i * 0.2,
+                     ease: "easeInOut"
+                   }}
+                 >
+                   ↓
+                 </motion.div>
+               ))}
              </motion.div>
            </div>
          </div>
@@ -876,7 +1226,8 @@ function App() {
           </motion.p>
         </div>
       </motion.footer>
-    </div>
+      </div>
+    </>
   )
 }
 
