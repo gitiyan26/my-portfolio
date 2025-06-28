@@ -725,18 +725,102 @@ function App() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true, amount: 0.3 }}
         id="about" 
-        className="relative z-10 py-20 bg-white/85 dark:bg-gray-800/30 backdrop-blur-md border-y border-slate-200/60 dark:border-gray-700/30 shadow-sm shadow-slate-200/30 dark:shadow-transparent"
+        className="relative z-10 py-20 bg-white/85 dark:bg-gray-800/30 backdrop-blur-md border-y border-slate-200/60 dark:border-gray-700/30 shadow-sm shadow-slate-200/30 dark:shadow-transparent overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-center mb-16"
-          >
-            About Me
-          </motion.h2>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating geometric shapes */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`about-shape-${i}`}
+              className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 dark:from-blue-500/20 dark:to-purple-500/20"
+              style={{
+                left: `${10 + (i * 12)}%`,
+                top: `${20 + (i % 3) * 25}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+                rotate: [0, 180, 360],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 8 + (i * 2),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5
+              }}
+            />
+          ))}
+          
+          {/* Floating particles */}
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={`about-particle-${i}`}
+              className="absolute w-2 h-2 bg-blue-400/30 dark:bg-blue-300/40 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0]
+              }}
+              transition={{
+                duration: 4 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Enhanced About Me Heading */}
+          <div className="text-center mb-16 relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative inline-block"
+            >
+              {/* Glow effect behind text */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 blur-xl rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Main heading */}
+              <motion.h2 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-bold relative z-10 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent"
+              >
+                About Me
+              </motion.h2>
+              
+              {/* Decorative underline */}
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                transition={{ duration: 1, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-full mt-2 mx-auto"
+              />
+            </motion.div>
+          </div>
           
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Text content */}
@@ -747,31 +831,93 @@ function App() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="bg-white/90 dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-xl shadow-lg shadow-slate-200/20 dark:shadow-gray-900/20 border border-slate-200/40 dark:border-gray-700/30">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">🚀 Passion & Experience</h3>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Saya adalah seorang Full Stack Developer dengan pengalaman 3+ tahun dalam mengembangkan 
-                  aplikasi web modern. Passionate dalam menciptakan solusi digital yang user-friendly, 
-                  scalable, dan memiliki performa tinggi.
-                </p>
-              </div>
-              
-              <div className="bg-white/90 dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-xl shadow-lg shadow-slate-200/20 dark:shadow-gray-900/20 border border-slate-200/40 dark:border-gray-700/30">
-                <h3 className="text-xl font-semibold mb-3 text-purple-600 dark:text-purple-400">💻 Technical Skills</h3>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Keahlian saya meliputi frontend development dengan React.js, backend development dengan 
-                  Node.js dan Python, serta database management. Saya juga memiliki pengalaman dalam 
-                  UI/UX design menggunakan Figma dan Adobe Creative Suite.
-                </p>
-              </div>
-              
-              <div className="bg-white/90 dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-xl shadow-lg shadow-slate-200/20 dark:shadow-gray-900/20 border border-slate-200/40 dark:border-gray-700/30">
-                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400">🌱 Growth Mindset</h3>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Selalu antusias untuk belajar teknologi baru dan menghadapi tantangan dalam 
-                  mengembangkan produk digital yang dapat memberikan impact positif bagi pengguna.
-                </p>
-              </div>
+              {[
+                {
+                  icon: "🚀",
+                  title: "Passion & Experience",
+                  color: "blue",
+                  content: "Saya adalah seorang Full Stack Developer dengan pengalaman 3+ tahun dalam mengembangkan aplikasi web modern. Passionate dalam menciptakan solusi digital yang user-friendly, scalable, dan memiliki performa tinggi.",
+                  delay: 0.6
+                },
+                {
+                  icon: "💻",
+                  title: "Technical Skills",
+                  color: "purple",
+                  content: "Keahlian saya meliputi frontend development dengan React.js, backend development dengan Node.js dan Python, serta database management. Saya juga memiliki pengalaman dalam UI/UX design menggunakan Figma dan Adobe Creative Suite.",
+                  delay: 0.8
+                },
+                {
+                  icon: "🌱",
+                  title: "Growth Mindset",
+                  color: "green",
+                  content: "Selalu antusias untuk belajar teknologi baru dan menghadapi tantangan dalam mengembangkan produk digital yang dapat memberikan impact positif bagi pengguna.",
+                  delay: 1.0
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    y: -5,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                  }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: item.delay,
+                    type: "spring",
+                    stiffness: 300
+                  }}
+                  viewport={{ once: true }}
+                  className="group bg-white/90 dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-xl shadow-lg shadow-slate-200/20 dark:shadow-gray-900/20 border border-slate-200/40 dark:border-gray-700/30 hover:border-blue-300/50 dark:hover:border-blue-500/30 transition-all duration-300 cursor-pointer relative overflow-hidden"
+                >
+                  {/* Hover background effect */}
+                  <motion.div
+                    className={`absolute inset-0 bg-gradient-to-br from-${item.color}-50/50 to-${item.color}-100/30 dark:from-${item.color}-500/10 dark:to-${item.color}-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  />
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center mb-3">
+                      <motion.span
+                        className="text-2xl mr-3"
+                        whileHover={{ 
+                          scale: 1.3, 
+                          rotate: [0, -10, 10, 0],
+                          y: [0, -5, 0]
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {item.icon}
+                      </motion.span>
+                      <motion.h3 
+                        className={`text-xl font-semibold text-${item.color}-600 dark:text-${item.color}-400 group-hover:text-${item.color}-700 dark:group-hover:text-${item.color}-300 transition-colors duration-300`}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: item.delay + 0.2 }}
+                        viewport={{ once: true }}
+                      >
+                        {item.title}
+                      </motion.h3>
+                    </div>
+                    
+                    <motion.p 
+                      className="text-gray-700 dark:text-gray-300 leading-relaxed group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ duration: 0.6, delay: item.delay + 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      {item.content}
+                    </motion.p>
+                  </div>
+                  
+                  {/* Decorative corner element */}
+                  <motion.div
+                    className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-${item.color}-200/20 to-transparent dark:from-${item.color}-400/20 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  />
+                </motion.div>
+              ))}
             </motion.div>
             
             {/* Right side - Visual elements */}
@@ -782,45 +928,142 @@ function App() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-slate-100/80 to-blue-100/60 dark:from-blue-500/20 dark:to-purple-500/20 rounded-2xl p-8 backdrop-blur-md border border-slate-200/50 dark:border-gray-700/30 shadow-lg shadow-slate-200/20 dark:shadow-transparent">
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div 
-                    whileHover={{ scale: 1.05, rotate: 5 }}
-                    className="bg-white/95 dark:bg-gray-800/80 p-4 rounded-lg text-center shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-100/50 dark:border-transparent"
-                  >
-                    <div className="text-3xl mb-2">⚡</div>
-                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">3+</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Years Experience</div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    whileHover={{ scale: 1.05, rotate: -5 }}
-                    className="bg-white/95 dark:bg-gray-800/80 p-4 rounded-lg text-center shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-100/50 dark:border-transparent"
-                  >
-                    <div className="text-3xl mb-2">🚀</div>
-                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">50+</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Projects Done</div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    whileHover={{ scale: 1.05, rotate: 5 }}
-                    className="bg-white/95 dark:bg-gray-800/80 p-4 rounded-lg text-center shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-100/50 dark:border-transparent"
-                  >
-                    <div className="text-3xl mb-2">💻</div>
-                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">15+</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Technologies</div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    whileHover={{ scale: 1.05, rotate: -5 }}
-                    className="bg-white/95 dark:bg-gray-800/80 p-4 rounded-lg text-center shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-100/50 dark:border-transparent"
-                  >
-                    <div className="text-3xl mb-2">🎯</div>
-                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">100%</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Dedication</div>
-                  </motion.div>
-                </div>
+              {/* Floating decorative elements around stats */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={`stat-float-${i}`}
+                    className="absolute w-4 h-4 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full"
+                    style={{
+                      left: `${10 + (i * 15)}%`,
+                      top: `${15 + (i % 2) * 70}%`,
+                    }}
+                    animate={{
+                      y: [0, -15, 0],
+                      x: [0, 8, 0],
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.8, 0.3]
+                    }}
+                    transition={{
+                      duration: 3 + (i * 0.5),
+                      repeat: Infinity,
+                      delay: i * 0.3,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
               </div>
+              
+              <motion.div 
+                className="bg-gradient-to-br from-slate-100/80 to-blue-100/60 dark:from-blue-500/20 dark:to-purple-500/20 rounded-2xl p-8 backdrop-blur-md border border-slate-200/50 dark:border-gray-700/30 shadow-lg shadow-slate-200/20 dark:shadow-transparent relative overflow-hidden"
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)"
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20" />
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 relative z-10">
+                  {[
+                    { icon: "⚡", value: "3+", label: "Years Experience", color: "blue", delay: 1.2 },
+                    { icon: "🚀", value: "50+", label: "Projects Done", color: "purple", delay: 1.4 },
+                    { icon: "💻", value: "15+", label: "Technologies", color: "green", delay: 1.6 },
+                    { icon: "🎯", value: "100%", label: "Dedication", color: "orange", delay: 1.8 }
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      whileHover={{ 
+                        scale: 1.08, 
+                        rotate: index % 2 === 0 ? 5 : -5,
+                        y: -8,
+                        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.6, 
+                        delay: stat.delay,
+                        type: "spring",
+                        stiffness: 300
+                      }}
+                      viewport={{ once: true }}
+                      className="group bg-white/95 dark:bg-gray-800/80 p-4 rounded-lg text-center shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-100/50 dark:border-transparent hover:border-blue-200/50 dark:hover:border-blue-500/30 transition-all duration-300 cursor-pointer relative overflow-hidden"
+                    >
+                      {/* Hover glow effect */}
+                      <motion.div
+                        className={`absolute inset-0 bg-gradient-to-br from-${stat.color}-100/50 to-${stat.color}-200/30 dark:from-${stat.color}-500/20 dark:to-${stat.color}-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                      />
+                      
+                      <div className="relative z-10">
+                        <motion.div 
+                          className="text-3xl mb-2"
+                          whileHover={{ 
+                            scale: 1.3, 
+                            rotate: [0, -15, 15, 0],
+                            y: [0, -5, 0]
+                          }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          {stat.icon}
+                        </motion.div>
+                        
+                        <motion.div 
+                          className={`text-2xl font-bold text-${stat.color}-600 dark:text-${stat.color}-400 group-hover:text-${stat.color}-700 dark:group-hover:text-${stat.color}-300 transition-colors duration-300`}
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: stat.delay + 0.2 }}
+                          viewport={{ once: true }}
+                        >
+                          {stat.value}
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: stat.delay + 0.4 }}
+                          viewport={{ once: true }}
+                        >
+                          {stat.label}
+                        </motion.div>
+                      </div>
+                      
+                      {/* Corner decoration */}
+                      <motion.div
+                        className={`absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-${stat.color}-300/30 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Floating particles inside container */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={`inner-particle-${i}`}
+                    className="absolute w-1 h-1 bg-blue-400/40 dark:bg-blue-300/50 rounded-full"
+                    style={{
+                      left: `${20 + (i * 10)}%`,
+                      top: `${30 + (i % 3) * 20}%`,
+                    }}
+                    animate={{
+                      y: [0, -10, 0],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1, 0]
+                    }}
+                    transition={{
+                      duration: 2 + Math.random(),
+                      repeat: Infinity,
+                      delay: Math.random() * 2,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+              </motion.div>
             </motion.div>
           </div>
         </div>
