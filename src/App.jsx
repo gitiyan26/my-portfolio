@@ -69,13 +69,7 @@ function App() {
     }
   ]
 
-  const nextProject = () => {
-    setCurrentProjectIndex((prev) => (prev + 1) % projects.length)
-  }
 
-  const prevProject = () => {
-    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length)
-  }
 
   const getVisibleProjects = () => {
     const visible = []
@@ -107,18 +101,18 @@ function App() {
          {/* Enhanced Light Mode Decorative Elements */}
          <motion.div 
            className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-r from-blue-300/20 to-purple-300/20 rounded-full blur-2xl dark:opacity-0"
-           animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.4, 0.2], rotate: [0, 180, 360] }}
-           transition={{ duration: 12, repeat: Infinity }}
+           animate={{ scale: [1, 1.4], opacity: [0.2, 0.4], rotate: 360 }}
+           transition={{ duration: 12, repeat: Infinity, type: "tween" }}
          />
          <motion.div 
            className="absolute bottom-1/4 left-1/4 w-40 h-40 bg-gradient-to-r from-indigo-300/15 to-pink-300/15 rounded-full blur-3xl dark:opacity-0"
-           animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.35, 0.15], rotate: [360, 180, 0] }}
-           transition={{ duration: 15, repeat: Infinity, delay: 3 }}
+           animate={{ scale: [1, 1.3], opacity: [0.15, 0.35], rotate: -360 }}
+           transition={{ duration: 15, repeat: Infinity, delay: 3, type: "tween" }}
          />
          <motion.div 
            className="absolute top-1/2 right-1/3 w-24 h-24 bg-gradient-to-r from-violet-300/25 to-cyan-300/25 rounded-full blur-xl dark:opacity-0"
-           animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-           transition={{ duration: 8, repeat: Infinity, delay: 1 }}
+           animate={{ scale: [1, 1.2], opacity: [0.2, 0.4] }}
+           transition={{ duration: 8, repeat: Infinity, delay: 1, type: "tween" }}
          />
         
         {/* Floating Particles */}
@@ -132,14 +126,15 @@ function App() {
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [-20, -100, -20],
-                x: [-10, 10, -10],
-                opacity: [0, 1, 0],
+                y: [-20, -100],
+                x: [-10, 10],
+                opacity: [0, 1],
               }}
               transition={{
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 delay: Math.random() * 2,
+                type: "tween"
               }}
             />
           ))}
@@ -158,8 +153,8 @@ function App() {
         />
         <motion.div 
           className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity }}
+          animate={{ scale: [1, 1.2], opacity: [0.3, 0.6] }}
+          transition={{ duration: 4, repeat: Infinity, type: "tween" }}
         />
       </div>
       {/* Navigation */}
@@ -261,42 +256,42 @@ function App() {
            <motion.div 
              className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
              animate={{ 
-               scale: [1, 1.3, 0.8, 1.2, 1], 
-               rotate: [0, 180, 360],
-               x: [0, 50, -30, 0],
-               y: [0, -20, 30, 0]
+               scale: [1, 1.3], 
+               rotate: 360,
+               x: [0, 50],
+               y: [0, -20]
              }}
-             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", type: "tween" }}
            />
            <motion.div 
              className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
              animate={{ 
-               scale: [1.2, 0.9, 1.4, 1], 
-               rotate: [360, 180, 0],
-               x: [0, -40, 20, 0],
-               y: [0, 25, -15, 0]
+               scale: [1.2, 0.9], 
+               rotate: -360,
+               x: [0, -40],
+               y: [0, 25]
              }}
-             transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+             transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", type: "tween" }}
            />
            
            {/* Medium floating elements */}
            <motion.div 
              className="absolute top-1/4 left-1/3 w-32 h-32 bg-gradient-to-r from-cyan-400/15 to-blue-400/15 rounded-full blur-2xl"
              animate={{ 
-               scale: [1, 1.5, 1], 
-               opacity: [0.3, 0.7, 0.3],
-               rotate: [0, 360]
+               scale: [1, 1.5], 
+               opacity: [0.3, 0.7],
+               rotate: 360
              }}
-             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", type: "tween" }}
            />
            <motion.div 
              className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-xl"
              animate={{ 
-               scale: [1, 1.3, 1], 
-               opacity: [0.4, 0.8, 0.4],
-               rotate: [360, 0]
+               scale: [1, 1.3], 
+               opacity: [0.4, 0.8],
+               rotate: -360
              }}
-             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", type: "tween" }}
            />
            
            {/* Interactive floating particles */}
@@ -309,17 +304,18 @@ function App() {
                  top: `${20 + Math.random() * 60}%`,
                }}
                animate={{
-                 y: [-30, -80, -30],
-                 x: [-20, 20, -20],
-                 opacity: [0, 1, 0],
-                 scale: [0.5, 1.2, 0.5],
-                 rotate: [0, 360]
+                 y: [-30, -80],
+                 x: [-20, 20],
+                 opacity: [0, 1],
+                 scale: [0.5, 1.2],
+                 rotate: 360
                }}
                transition={{
                  duration: 4 + Math.random() * 3,
                  repeat: Infinity,
                  delay: Math.random() * 3,
-                 ease: "easeInOut"
+                 ease: "easeInOut",
+                 type: "tween"
                }}
              />
            ))}
@@ -405,11 +401,10 @@ function App() {
                    animate={{ 
                      textShadow: [
                        "0 0 20px rgba(255, 255, 255, 0.5)",
-                       "0 0 30px rgba(255, 255, 255, 0.8)",
-                       "0 0 20px rgba(255, 255, 255, 0.5)"
+                       "0 0 30px rgba(255, 255, 255, 0.8)"
                      ]
                    }}
-                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", type: "tween" }}
                  >
                    I
                  </motion.span>
@@ -472,8 +467,10 @@ function App() {
                    }}
                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent relative inline-block"
                    whileHover={{ 
-                     scale: 1.05,
-                     textShadow: "0 0 20px rgba(139, 92, 246, 0.5)"
+                     scale: 1.05
+                   }}
+                   style={{
+                     filter: "drop-shadow(0 0 10px rgba(139, 92, 246, 0.3))"
                    }}
                  >
                    Iyan
@@ -883,10 +880,10 @@ function App() {
                         className="text-2xl mr-3"
                         whileHover={{ 
                           scale: 1.3, 
-                          rotate: [0, -10, 10, 0],
-                          y: [0, -5, 0]
+                          rotate: 10,
+                          y: -5
                         }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.3, type: "tween" }}
                       >
                         {item.icon}
                       </motion.span>
@@ -1004,10 +1001,10 @@ function App() {
                           className="text-3xl mb-2"
                           whileHover={{ 
                             scale: 1.3, 
-                            rotate: [0, -15, 15, 0],
-                            y: [0, -5, 0]
+                            rotate: 15,
+                            y: -5
                           }}
-                          transition={{ duration: 0.4 }}
+                          transition={{ duration: 0.4, type: "tween" }}
                         >
                           {stat.icon}
                         </motion.div>
@@ -1316,14 +1313,14 @@ function App() {
                  
                  <div className="relative z-10">
                    {/* Icon with enhanced animation */}
-                   <motion.div 
+                   <motion.div
                      className="text-4xl mb-3 relative"
                      whileHover={{ 
                        scale: 1.3, 
-                       rotate: [0, -15, 15, 0],
+                       rotate: 15,
                        y: -5
                      }}
-                     transition={{ duration: 0.4, type: "spring" }}
+                     transition={{ duration: 0.4, type: "tween" }}
                    >
                      {skill.icon}
                      
@@ -1417,108 +1414,522 @@ function App() {
          transition={{ duration: 0.8 }}
          viewport={{ once: true, amount: 0.3 }}
          id="projects" 
-         className="relative z-10 py-20 bg-white/90 dark:bg-gray-800/30 backdrop-blur-md border-y border-slate-200/50 dark:border-gray-700/30 shadow-sm shadow-slate-200/20 dark:shadow-transparent"
+         className="relative z-10 py-20 bg-white/90 dark:bg-gray-800/30 backdrop-blur-md border-y border-slate-200/50 dark:border-gray-700/30 shadow-sm shadow-slate-200/20 dark:shadow-transparent overflow-hidden"
        >
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <motion.h2 
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8, delay: 0.2 }}
-             viewport={{ once: true }}
-             className="text-3xl md:text-4xl font-bold text-center mb-16"
-           >
-             Projects
-           </motion.h2>
+         {/* Animated Background Elements */}
+         <div className="absolute inset-0 overflow-hidden">
+           {/* Large floating geometric shapes */}
+           {[...Array(6)].map((_, i) => (
+             <motion.div
+               key={`projects-shape-${i}`}
+               className="absolute"
+               style={{
+                 width: `${100 + (i * 30)}px`,
+                 height: `${100 + (i * 30)}px`,
+                 left: `${-5 + (i * 20)}%`,
+                 top: `${5 + (i % 3) * 30}%`,
+               }}
+               animate={{
+                 rotate: [0, 360],
+                 scale: [1, 1.2, 1],
+                 x: [0, 30, 0],
+                 y: [0, -20, 0]
+               }}
+               transition={{
+                 duration: 20 + (i * 5),
+                 repeat: Infinity,
+                 ease: "easeInOut",
+                 delay: i * 2
+               }}
+             >
+               <div className={`w-full h-full bg-gradient-to-br ${
+                 i % 3 === 0 ? 'from-blue-400/10 to-purple-400/10' :
+                 i % 3 === 1 ? 'from-purple-400/10 to-pink-400/10' :
+                 'from-cyan-400/10 to-blue-400/10'
+               } dark:from-blue-500/20 dark:to-purple-500/20 rounded-3xl transform rotate-45`} />
+             </motion.div>
+           ))}
            
-           {/* Project Slider */}
-           <div className="relative">
-             {/* Navigation Buttons */}
-             <div className="flex justify-between items-center mb-8">
-               <motion.button
-                 onClick={prevProject}
-                 whileHover={{ scale: 1.1 }}
-                 whileTap={{ scale: 0.9 }}
-                 className="p-3 bg-white/95 dark:bg-gray-800/80 backdrop-blur-md rounded-full shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-200/50 dark:border-gray-700/30 hover:bg-white dark:hover:bg-gray-700/90 hover:shadow-xl hover:shadow-slate-300/40 dark:hover:shadow-gray-900/30 transition-all duration-300"
-               >
-                 <HiChevronLeft className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-               </motion.button>
+           {/* Floating project icons */}
+           {['💻', '🎨', '📱', '🚀', '⚡', '🎯', '🔧', '💡'].map((icon, i) => (
+             <motion.div
+               key={`projects-icon-${i}`}
+               className="absolute text-3xl opacity-20 dark:opacity-30"
+               style={{
+                 left: `${10 + (i * 12)}%`,
+                 top: `${15 + (i % 4) * 20}%`,
+               }}
+               animate={{
+                 y: [0, -25, 0],
+                 rotate: [0, 180, 360],
+                 opacity: [0.2, 0.5, 0.2],
+                 scale: [0.8, 1.2, 0.8]
+               }}
+               transition={{
+                 duration: 8 + (i * 1.5),
+                 repeat: Infinity,
+                 delay: i * 0.7,
+                 ease: "easeInOut"
+               }}
+             >
+               {icon}
+             </motion.div>
+           ))}
+           
+           {/* Animated grid pattern */}
+           <svg className="absolute inset-0 w-full h-full opacity-10">
+             <defs>
+               <pattern id="projectsGrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                 <circle cx="25" cy="25" r="1" fill="currentColor" />
+               </pattern>
+               <linearGradient id="projectsGridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                 <stop offset="0%" stopColor="#3B82F6" />
+                 <stop offset="50%" stopColor="#8B5CF6" />
+                 <stop offset="100%" stopColor="#EC4899" />
+               </linearGradient>
+             </defs>
+             <rect width="100%" height="100%" fill="url(#projectsGrid)" stroke="url(#projectsGridGradient)" />
+           </svg>
+           
+           {/* Floating particles */}
+           {[...Array(12)].map((_, i) => (
+             <motion.div
+               key={`projects-particle-${i}`}
+               className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+               style={{
+                 left: `${Math.random() * 100}%`,
+                 top: `${Math.random() * 100}%`,
+               }}
+               animate={{
+                 y: [0, -40, 0],
+                 x: [0, 20, 0],
+                 opacity: [0.3, 1, 0.3],
+                 scale: [0.5, 1.5, 0.5]
+               }}
+               transition={{
+                 duration: 6 + (i * 0.8),
+                 repeat: Infinity,
+                 delay: i * 0.5,
+                 ease: "easeInOut"
+               }}
+             />
+           ))}
+         </div>
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+           {/* Enhanced Projects Heading */}
+           <motion.div
+             initial={{ opacity: 0, y: 50 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8 }}
+             viewport={{ once: true }}
+             className="relative mb-16 text-center"
+           >
+             {/* Background glow effect */}
+             <motion.div
+               className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl"
+               animate={{
+                 scale: [1, 1.3, 1],
+                 opacity: [0.3, 0.7, 0.3],
+                 rotate: [0, 5, 0]
+               }}
+               transition={{
+                 duration: 5,
+                 repeat: Infinity,
+                 ease: "easeInOut"
+               }}
+             />
+             
+             {/* Main heading container */}
+             <motion.div
+               initial={{ scale: 0.8, opacity: 0 }}
+               whileInView={{ scale: 1, opacity: 1 }}
+               transition={{ duration: 0.8, delay: 0.2 }}
+               viewport={{ once: true }}
+               className="relative"
+             >
+               <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4">
+                 Featured Projects
+               </h2>
                
-               <div className="text-center">
-                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                   {currentProjectIndex + 1} - {Math.min(currentProjectIndex + 3, projects.length)} of {projects.length} projects
-                 </p>
+               {/* Animated underline with multiple layers */}
+               <div className="relative flex justify-center">
+                 <motion.div
+                   className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
+                   initial={{ width: 0 }}
+                   whileInView={{ width: "150px" }}
+                   transition={{ duration: 1.2, delay: 0.5 }}
+                   viewport={{ once: true }}
+                 />
+                 <motion.div
+                   className="absolute top-0 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full blur-sm"
+                   initial={{ width: 0 }}
+                   whileInView={{ width: "150px" }}
+                   transition={{ duration: 1.2, delay: 0.7 }}
+                   viewport={{ once: true }}
+                 />
                </div>
                
-               <motion.button
-                  onClick={nextProject}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="p-3 bg-white/95 dark:bg-gray-800/80 backdrop-blur-md rounded-full shadow-lg shadow-slate-200/30 dark:shadow-gray-900/20 border border-slate-200/50 dark:border-gray-700/30 hover:bg-white dark:hover:bg-gray-700/90 hover:shadow-xl hover:shadow-slate-300/40 dark:hover:shadow-gray-900/30 transition-all duration-300"
-                >
-                  <HiChevronRight className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                </motion.button>
-             </div>
-             
-             {/* Projects Grid */}
-             <motion.div 
-               key={currentProjectIndex}
-               initial={{ opacity: 0, x: 100 }}
-               animate={{ opacity: 1, x: 0 }}
-               exit={{ opacity: 0, x: -100 }}
-               transition={{ duration: 0.5, ease: "easeInOut" }}
-               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-             >
-               {getVisibleProjects().map((project, index) => (
+               {/* Floating decorative elements around heading */}
+               {[...Array(10)].map((_, i) => (
                  <motion.div
-                   key={`${project.originalIndex}-${currentProjectIndex}`}
-                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                   whileHover={{ scale: 1.03, y: -8 }}
-                   transition={{ 
-                     duration: 0.6, 
-                     delay: index * 0.1,
-                     type: "spring",
-                     stiffness: 300
+                   key={`heading-decoration-${i}`}
+                   className="absolute w-3 h-3 rounded-full"
+                   style={{
+                     background: `linear-gradient(45deg, ${
+                       i % 3 === 0 ? '#3B82F6, #8B5CF6' :
+                       i % 3 === 1 ? '#8B5CF6, #EC4899' :
+                       '#06B6D4, #3B82F6'
+                     })`,
+                     left: `${15 + (i * 8)}%`,
+                     top: `${-30 + (i % 3) * 20}px`,
                    }}
-                   className="bg-white/95 dark:bg-gray-700/70 backdrop-blur-md rounded-xl shadow-lg shadow-slate-200/20 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-slate-300/30 dark:hover:shadow-gray-900/30 transition-all duration-300 overflow-hidden border border-slate-200/50 dark:border-gray-600/20 group"
-                 >
-                   <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                      <div className={`absolute inset-0 bg-[url('${project.image}')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
-                      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}/70`}></div>
-                      
-                      {/* Project number indicator */}
-                      <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">{project.originalIndex + 1}</span>
-                      </div>
-                    </div>
-                   <div className="p-6">
-                     <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                     <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed line-clamp-3">{project.description}</p>
-                     <div className="flex flex-wrap gap-2">
-                       {project.tech.map((tech, techIndex) => (
-                         <span key={techIndex} className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-medium">{tech}</span>
-                       ))}
-                     </div>
-                   </div>
-                 </motion.div>
+                   animate={{
+                     y: [0, -15, 0],
+                     opacity: [0.4, 1, 0.4],
+                     scale: [0.8, 1.3, 0.8],
+                     rotate: [0, 180, 360]
+                   }}
+                   transition={{
+                     duration: 3 + (i * 0.4),
+                     repeat: Infinity,
+                     delay: i * 0.3,
+                     ease: "easeInOut"
+                   }}
+                 />
+               ))}
+               
+               {/* Orbiting elements */}
+               {[...Array(4)].map((_, i) => (
+                 <motion.div
+                   key={`orbit-${i}`}
+                   className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                   style={{
+                     left: '50%',
+                     top: '50%',
+                   }}
+                   animate={{
+                     rotate: [0, 360],
+                     x: [0, Math.cos(i * Math.PI / 2) * 80],
+                     y: [0, Math.sin(i * Math.PI / 2) * 80],
+                   }}
+                   transition={{
+                     duration: 8,
+                     repeat: Infinity,
+                     delay: i * 0.5,
+                     ease: "linear"
+                   }}
+                 />
                ))}
              </motion.div>
              
-             {/* Dots Indicator */}
-             <div className="flex justify-center mt-8 space-x-2">
-               {projects.map((_, index) => (
+             {/* Subtitle */}
+             <motion.p
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, delay: 0.6 }}
+               viewport={{ once: true }}
+               className="text-gray-600 dark:text-gray-300 text-lg mt-6 max-w-3xl mx-auto"
+             >
+               Showcase of my latest work and creative solutions
+             </motion.p>
+           </motion.div>
+           
+           {/* Project Slider */}
+           <div className="relative">
+
+             
+             {/* Projects Grid */}
+             <AnimatePresence mode="wait">
+               <motion.div 
+                 key={currentProjectIndex}
+                 initial={{ opacity: 0, x: 50, scale: 0.95 }}
+                 animate={{ opacity: 1, x: 0, scale: 1 }}
+                 exit={{ opacity: 0, x: -50, scale: 0.95 }}
+                 transition={{ 
+                   duration: 0.6, 
+                   ease: [0.25, 0.46, 0.45, 0.94],
+                   type: "tween"
+                 }}
+                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+               >
+               {getVisibleProjects().map((project, index) => (
+                 <motion.div
+                   key={`${project.originalIndex}-${currentProjectIndex}`}
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   whileHover={{ 
+                     y: -5
+                   }}
+                   transition={{ 
+                     duration: 0.3, 
+                     delay: index * 0.05,
+                     type: "tween",
+                     ease: "easeOut"
+                   }}
+                   className="bg-white/95 dark:bg-gray-700/70 backdrop-blur-md rounded-xl shadow-lg shadow-slate-200/20 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-slate-300/30 dark:hover:shadow-gray-900/30 transition-all duration-300 overflow-hidden border border-slate-200/50 dark:border-gray-600/20 group relative"
+                 >
+                   {/* Simplified floating decorative elements */}
+                   {[...Array(2)].map((_, i) => (
+                     <motion.div
+                       key={`project-float-${index}-${i}`}
+                       className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-40"
+                       style={{
+                         left: `${30 + (i * 40)}%`,
+                         top: `${20 + (i * 60)}%`,
+                       }}
+                       animate={{
+                         opacity: [0, 0.4]
+                       }}
+                       transition={{
+                         duration: 1.5,
+                         repeat: Infinity,
+                         repeatType: "reverse",
+                         delay: i * 0.5,
+                         ease: "easeInOut"
+                       }}
+                     />
+                   ))}
+                   
+                   {/* Enhanced project header */}
+                   <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
+                      {/* Background image with subtle effect */}
+                      <motion.div 
+                        className={`absolute inset-0 bg-[url('${project.image}')] bg-cover bg-center opacity-30 group-hover:opacity-50`}
+                        transition={{ duration: 0.3 }}
+                      />
+                      
+                      {/* Gradient overlay with animation */}
+                      <motion.div 
+                        className={`absolute inset-0 bg-gradient-to-br ${project.gradient}/70`}
+                        whileHover={{ opacity: 0.9 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      
+                      {/* Static mesh pattern */}
+                      <div
+                        className="absolute inset-0 opacity-20"
+                        style={{
+                          backgroundImage: `radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
+                                           radial-gradient(circle at 75% 75%, white 2px, transparent 2px)`,
+                          backgroundSize: '20px 20px'
+                        }}
+                      />
+                      
+                      {/* Enhanced project number indicator */}
+                      <motion.div 
+                        className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 group-hover:bg-white/30 group-hover:border-white/50"
+                        transition={{ duration: 0.3 }}
+                      >
+                        <span className="text-white font-bold text-sm">{project.originalIndex + 1}</span>
+                      </motion.div>
+                      
+                      {/* Floating project type badge */}
+                      <motion.div
+                        className="absolute top-4 left-4 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + (index * 0.1) }}
+                      >
+                        <span className="text-white text-xs font-medium">Web App</span>
+                      </motion.div>
+                      
+                      {/* Hover overlay with action buttons */}
+                      <motion.div
+                        className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center space-x-4"
+                        transition={{ duration: 0.3 }}
+                      >
+                        <motion.button
+                          className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 text-white text-sm font-medium hover:bg-white/30"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          View Demo
+                        </motion.button>
+                        <motion.button
+                          className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 text-white text-sm font-medium hover:bg-white/30"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Source Code
+                        </motion.button>
+                      </motion.div>
+                    </div>
+                   
+                   {/* Enhanced content section */}
+                   <div className="p-6 relative">
+                     {/* Background glow effect */}
+                     <motion.div
+                       className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 rounded-b-xl"
+                       transition={{ duration: 0.3 }}
+                     />
+                     
+                     <div className="relative z-10">
+                       {/* Enhanced title */}
+                       <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                         {project.title}
+                       </h3>
+                       
+                       {/* Enhanced description */}
+                       <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed line-clamp-3 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                         {project.description}
+                       </p>
+                       
+                       {/* Enhanced tech stack */}
+                         <div className="flex flex-wrap gap-2">
+                           {project.tech.map((tech, techIndex) => (
+                             <span 
+                               key={techIndex} 
+                               className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-medium border border-blue-200 dark:border-blue-800 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-200 cursor-pointer"
+                             >
+                               {tech}
+                             </span>
+                           ))}
+                         </div>
+                     </div>
+                     
+                     {/* Corner decorations */}
+                     <div className="absolute bottom-2 right-2 w-2 h-2 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                   </div>
+                 </motion.div>
+               ))}             </motion.div>
+             </AnimatePresence>
+             
+             {/* Enhanced Navigation & Indicators */}
+             <div className="flex flex-col items-center mt-12 space-y-6">
+               {/* Navigation Controls */}
+               <div className="flex items-center space-x-6">
+                 {/* Previous Button */}
                  <motion.button
-                   key={index}
-                   onClick={() => setCurrentProjectIndex(index)}
-                   whileHover={{ scale: 1.2 }}
-                   whileTap={{ scale: 0.8 }}
-                   className={`w-3 h-3 rounded-full transition-all duration-300 shadow-sm ${
-                     index >= currentProjectIndex && index < currentProjectIndex + 3
-                       ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-blue-200 dark:shadow-blue-900/50'
-                       : 'bg-slate-300 dark:bg-gray-600 hover:bg-slate-400 dark:hover:bg-gray-500 shadow-slate-200/50 dark:shadow-gray-900/20'
-                   }`}
-                 />
-               ))}
+                   onClick={() => setCurrentProjectIndex(Math.max(0, currentProjectIndex - 3))}
+                   whileHover={{ 
+                     scale: 1.15,
+                     backgroundColor: "rgba(59, 130, 246, 0.1)",
+                     borderColor: "rgba(59, 130, 246, 0.3)"
+                   }}
+                   whileTap={{ scale: 0.9 }}
+                   className="relative p-4 bg-white/90 dark:bg-gray-700/90 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200/50 dark:border-gray-600/20 group overflow-hidden"
+                   disabled={currentProjectIndex === 0}
+                 >
+                   {/* Button glow effect */}
+                   <motion.div
+                     className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 rounded-full"
+                     transition={{ duration: 0.3 }}
+                   />
+                   
+                   <HiChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300 relative z-10 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                   
+                   {/* Ripple effect */}
+                   <motion.div
+                     className="absolute inset-0 bg-blue-500/20 rounded-full scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100"
+                     transition={{ duration: 0.4 }}
+                   />
+                 </motion.button>
+                 
+                 {/* Page Info */}
+                 <div className="px-6 py-3 bg-white/80 dark:bg-gray-700/80 backdrop-blur-md rounded-full border border-slate-200/50 dark:border-gray-600/20 shadow-lg">
+                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                     {Math.floor(currentProjectIndex / 3) + 1} of {Math.ceil(projects.length / 3)}
+                   </span>
+                 </div>
+                 
+                 {/* Next Button */}
+                 <motion.button
+                   onClick={() => setCurrentProjectIndex(Math.min(projects.length - 3, currentProjectIndex + 3))}
+                   whileHover={{ 
+                     scale: 1.15,
+                     backgroundColor: "rgba(59, 130, 246, 0.1)",
+                     borderColor: "rgba(59, 130, 246, 0.3)"
+                   }}
+                   whileTap={{ scale: 0.9 }}
+                   className="relative p-4 bg-white/90 dark:bg-gray-700/90 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200/50 dark:border-gray-600/20 group overflow-hidden"
+                   disabled={currentProjectIndex >= projects.length - 3}
+                 >
+                   {/* Button glow effect */}
+                   <motion.div
+                     className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 rounded-full"
+                     transition={{ duration: 0.3 }}
+                   />
+                   
+                   <HiChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300 relative z-10 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                   
+                   {/* Ripple effect */}
+                   <motion.div
+                     className="absolute inset-0 bg-blue-500/20 rounded-full scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100"
+                     transition={{ duration: 0.4 }}
+                   />
+                 </motion.button>
+               </div>
+               
+               {/* Enhanced Dots Indicator */}
+               <div className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-gray-700/80 backdrop-blur-md rounded-full border border-slate-200/50 dark:border-gray-600/20 shadow-lg">
+                 {projects.map((_, index) => {
+                   const isActive = index >= currentProjectIndex && index < currentProjectIndex + 3;
+                   const isCenter = index === currentProjectIndex + 1;
+                   return (
+                     <motion.button
+                       key={index}
+                       onClick={() => {
+                         const newIndex = Math.max(0, Math.min(projects.length - 3, index - 1));
+                         setCurrentProjectIndex(newIndex);
+                       }}
+                       whileHover={{ scale: 1.4 }}
+                       whileTap={{ scale: 0.8 }}
+                       className="relative group"
+                     >
+                       {/* Main dot */}
+                       <motion.div
+                         className={`rounded-full transition-all duration-300 relative overflow-hidden ${
+                           isActive
+                             ? isCenter
+                               ? 'w-5 h-5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-lg shadow-blue-500/40'
+                               : 'w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 shadow-md shadow-blue-500/30'
+                             : 'w-3 h-3 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                         }`}
+                         animate={{
+                           scale: isActive ? (isCenter ? [1, 1.2] : [1, 1.1]) : 1
+                         }}
+                         transition={{
+                           duration: 2,
+                           repeat: isActive ? Infinity : 0,
+                           ease: "easeInOut",
+                           type: "tween"
+                         }}
+                       >
+                         {/* Inner glow for active state */}
+                         {isActive && (
+                           <motion.div
+                             className="absolute inset-0.5 bg-white/30 rounded-full"
+                             animate={{
+                               opacity: [0.3, 0.7, 0.3]
+                             }}
+                             transition={{
+                               duration: 2,
+                               repeat: Infinity,
+                               ease: "easeInOut"
+                             }}
+                           />
+                         )}
+                       </motion.div>
+                       
+                       {/* Hover ring effect */}
+                       <motion.div
+                         className="absolute inset-0 border-2 border-blue-400/50 rounded-full scale-0 group-hover:scale-150 opacity-0 group-hover:opacity-100"
+                         transition={{ duration: 0.3 }}
+                       />
+                       
+                       {/* Project number tooltip */}
+                       <motion.div
+                         className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap"
+                         initial={{ y: 5, opacity: 0 }}
+                         whileHover={{ y: 0, opacity: 1 }}
+                         transition={{ duration: 0.2 }}
+                       >
+                         Project {index + 1}
+                       </motion.div>
+                     </motion.button>
+                   );
+                 })}
+               </div>
              </div>
            </div>
          </div>
